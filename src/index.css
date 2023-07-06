@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .my-container {
+      @apply w-full max-w-5xl 2xl:max-w-7xl  mx-auto px-5 lg:px-0 lg:ml-auto;
+    }
+}
