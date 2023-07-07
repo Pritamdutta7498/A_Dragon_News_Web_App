@@ -8,15 +8,15 @@ const Main = () => {
   return (
     <div className="my-container">
       <Header />
-      <div className="grid grid-cols-4 gap-4">
-        <div className="">
-            <LeftNav/>
+      <div className="grid grid-cols-12 gap-4">
+        <div className=" col-span-3">
+          <LeftNav />
         </div>
-        <div>
+        <div className="col-span-6 ">
           <h1>Main content is coming</h1>
         </div>
-        <div>
-          <RightNav/>
+        <div className="col-span-3 ">
+          <RightNav />
         </div>
       </div>
       <Footer />
