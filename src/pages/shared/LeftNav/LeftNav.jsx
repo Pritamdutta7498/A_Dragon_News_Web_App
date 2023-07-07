@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const LeftNav = () => {
-    return (
-        <div>
-            <h3>Left Navbar</h3>
-        </div>
-    );
+  const [categories, setCategories] = useState([]);
+  console.log(categories);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/categories")
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((error) => console.error(error));
+  }, []);
+  return (
+    <div>
+      <h2 className=" font-bold text-2xl ">All Categories:</h2>
+      <div className="ps-10 my-5 text-xl text-slate-400 font-semibold">
+        {categories.map((category) => (
+          <p key={category.id} className="my-6">
+            <Link to={`/category/${category.id}`}>{category.name}</Link>
+          </p>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default LeftNav;
