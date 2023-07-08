@@ -16,8 +16,8 @@ const Header = () => {
         <p className="font-medium">{moment().format("dddd, MMMM Do, YYYY")}</p>
       </div>
       {/* marquee section */}
-      <div className="flex bg-slate-300 p-3  gap-2">
-        <button className="btn btn-outline btn-accent">Latest</button>
+      <div className="flex bg-slate-300 rounded-md p-3  gap-2">
+        <button className="btn btn-outline btn-accent shadow-md shadow-slate-700">Latest</button>
         <Marquee speed={120} className="font-semibold" pauseOnHover="true">
           “Creativity is allowing yourself to make mistakes. Art is knowing
           which ones to keep.” – Scott Adams{" "}

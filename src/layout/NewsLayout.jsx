@@ -5,15 +5,13 @@ import LeftNav from "../pages/shared/LeftNav/LeftNav";
 import RightNav from "../pages/shared/RightNav/RightNav";
 import { Outlet } from "react-router-dom";
 
-const Main = () => {
-  return (
-    <div className="my-container">
-      <Header />
+const NewsLayout = () => {
+    return (
+        <div>
+            <Header />
       <div className="grid grid-cols-12 gap-4">
-        <div className=" col-span-3">
-          <LeftNav />
-        </div>
-        <div className="col-span-6 ">
+        
+        <div className="col-span-9 ">
           <Outlet/>
         </div>
         <div className="col-span-3 ">
@@ -21,8 +19,8 @@ const Main = () => {
         </div>
       </div>
       <Footer />
-    </div>
-  );
+        </div>
+    );
 };
 
-export default Main;
+export default NewsLayout;
