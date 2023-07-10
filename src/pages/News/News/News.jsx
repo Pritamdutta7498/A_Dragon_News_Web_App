@@ -10,7 +10,7 @@ const News = ({ news }) => {
 
   return (
     <div>
-      <div className="card w-full mx-auto bg-base-100 shadow-xl">
+      <div className="card w-full mx-auto bg-base-100 shadow-xl mt-20">
         <figure>
           <img src={image_url} alt="details img of news" />
         </figure>

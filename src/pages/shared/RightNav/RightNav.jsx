@@ -7,7 +7,7 @@ import bg from "../..//../assets/assets/bg.png";
 
 const RightNav = () => {
   return (
-    <div>
+    <div  >
       <div>
         <h3 className="font-bold text-2xl ">Login with</h3>
         <div className="my-5">

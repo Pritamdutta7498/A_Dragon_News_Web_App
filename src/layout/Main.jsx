@@ -4,11 +4,13 @@ import Footer from "../pages/shared/Footer/Footer";
 import LeftNav from "../pages/shared/LeftNav/LeftNav";
 import RightNav from "../pages/shared/RightNav/RightNav";
 import { Outlet } from "react-router-dom";
+import NavBar from "../pages/shared/NavBar/NavBar";
 
 const Main = () => {
   return (
     <div className="my-container">
       <Header />
+      <NavBar/>
       <div className="grid grid-cols-12 gap-4">
         <div className=" col-span-3">
           <LeftNav />
