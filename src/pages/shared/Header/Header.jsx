@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../../assets/assets/logo.png";
 import moment from "moment/moment";
 import Marquee from "react-fast-marquee";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div>
       {/* logo section */}
@@ -16,8 +19,14 @@ const Header = () => {
         <p className="font-medium">{moment().format("dddd, MMMM Do, YYYY")}</p>
       </div>
       {/* marquee section */}
+
       <div className="flex bg-slate-300 rounded-md p-3  gap-2">
-        <button className="btn btn-outline btn-accent shadow-md shadow-slate-700">Latest</button>
+        <Link to="/">
+          <button className="btn btn-outline btn-error border-spacing-0 font-bold  shadow-md shadow-slate-700">
+            Latest
+          </button>
+        </Link>
+
         <Marquee speed={120} className="font-semibold" pauseOnHover="true">
           “Creativity is allowing yourself to make mistakes. Art is knowing
           which ones to keep.” – Scott Adams{" "}
@@ -65,19 +74,27 @@ const Header = () => {
             </div>
           </div>
           <div className="navbar-center hidden lg:flex gap-5">
-          <Link to="/">Home</Link>
+            <Link to="/">Home</Link>
             <Link>About</Link>
             <Link>Career</Link>
           </div>
           <div className="navbar-end ">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-14 rounded-full">
-                <img src="https://static.vecteezy.com/system/resources/previews/011/483/813/original/guy-anime-avatar-free-vector.jpg" />
-              </div>
-            </label>
-            <button className="btn btn-neutral px-8 rounded-none ml-[-20px] ">
-              Login
-            </button>
+            {user && (
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-14 rounded-full">
+                  <img src="https://static.vecteezy.com/system/resources/previews/011/483/813/original/guy-anime-avatar-free-vector.jpg" />
+                </div>
+              </label>
+            )}
+            {user ? (
+              <button className="btn btn-neutral px-8 rounded-none ml-[-20px] ">
+                Logout
+              </button>
+            ) : (
+              <button className="btn btn-neutral px-8 rounded-none ml-[-20px] ">
+                Login
+              </button>
+            )}
           </div>
         </div>
       </div>

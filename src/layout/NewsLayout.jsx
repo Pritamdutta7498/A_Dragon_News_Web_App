@@ -6,21 +6,20 @@ import RightNav from "../pages/shared/RightNav/RightNav";
 import { Outlet } from "react-router-dom";
 
 const NewsLayout = () => {
-    return (
-        <div>
-            <Header />
+  return (
+    <div  className="my-container">
+      <Header />
       <div className="grid grid-cols-12 gap-4">
-        
         <div className="col-span-9 ">
-          <Outlet/>
+          <Outlet />
         </div>
         <div className="col-span-3 ">
           <RightNav />
         </div>
       </div>
       <Footer />
-        </div>
-    );
+    </div>
+  );
 };
 
 export default NewsLayout;
