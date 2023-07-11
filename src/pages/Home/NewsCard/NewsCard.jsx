@@ -19,7 +19,7 @@ const NewsCard = ({ news }) => {
     total_view,
     _id,
   } = news;
-  console.log(news);
+  // console.log(news);
   return (
     <div>
       <div className="card w-full bg-base-100 shadow-xl my-5 rounded-md">
