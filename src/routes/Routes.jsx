@@ -8,6 +8,7 @@ import LoginLayout from "../layout/LoginLayout";
 import Login from "../pages/shared/LogReg/Login/Login";
 import Registration from "../pages/shared/LogReg/Registration/Registration";
 import PrivetRoute from "./PrivetRoute";
+import Terms from "../pages/shared/Terms/Terms";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
         path: "register",
         element: <Registration />,
       },
+      {
+        path:'term',
+        element:<Terms/>
+
+      }
     ],
   },
   {

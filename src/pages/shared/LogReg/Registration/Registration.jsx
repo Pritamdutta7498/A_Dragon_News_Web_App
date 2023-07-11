@@ -4,8 +4,9 @@ import { AuthContext } from "../../../../provider/AuthProvider";
 
 const Registration = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
-  const [user, setUser] = useState('');
-  console.log(user);
+  const [user, setUser] = useState("");
+  const [accepted, setAccepted] = useState(false);
+  // console.log(user);
 
   const handleRegistration = (event) => {
     event.preventDefault();
@@ -17,8 +18,7 @@ const Registration = () => {
     const photoURL = form.photo.value;
     console.log(email, password, displayName, photoURL);
 
-  
-//! Not Working!
+    //! Not Working!
     // updateUserProfile(displayName, photoURL)
     // .then(() => {
     //   console.log('profile updated');
@@ -26,7 +26,6 @@ const Registration = () => {
     // }).catch((error) => {
     //   console.log(error);
     // });
-    
 
     // create user
     createUser(email, password)
@@ -38,6 +37,11 @@ const Registration = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+  const handleAccepted = (event) => {
+    // console.log(event.target.checked);
+    setAccepted(event.target.checked);
+
   };
 
   return (
@@ -93,29 +97,40 @@ const Registration = () => {
               placeholder="password"
               className="input input-bordered"
             />
-            <div>
-              Already have an account?{" "}
-              <Link to="/login" className="text-error font-semibold link-hover">
-                Login
-              </Link>
-            </div>
           </div>
-          
-          <Form.Check
-          onClick={handleAccepted}
-            type="checkbox"
-            label={
-              <>
-                Accept <Link to="/terms">Terms And Condition</Link>{" "}
-              </>
-            }
-          />
-          <div className="form-control mt-6">
+          <div onClick={handleAccepted} className="form-control mt-2 " >
+            <label className="cursor-pointer flex items-center gap-2">
+              <input
+                type="checkbox"
+                name="accept"
+                className="checkbox w-4 h-4 checkbox-success"
+              />
+              <span>
+                {
+                  <>
+                    Accept{" "}
+                    <Link to="/term" className="link-hover font-semibold">
+                      Terms & Condition
+                    </Link>
+                  </>
+                }
+              </span>
+            </label>
+          </div>
+
+          <div className="form-control mt-3 ">
             <input
               type="submit"
+              disabled={!accepted}
               className="btn btn-active hover:btn-error"
               value="Register"
             />
+          </div>
+          <div>
+            Already have an account?{" "}
+            <Link to="/login" className="text-error font-semibold link-hover">
+              Login
+            </Link>
           </div>
         </form>
       </div>
