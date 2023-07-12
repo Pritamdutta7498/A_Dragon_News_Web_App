@@ -7,10 +7,10 @@ import bg from "../..//../assets/assets/bg.png";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 const RightNav = () => {
-  const { googleLogin } = useContext(AuthContext);
+  const { googleLogin, githubLogin } = useContext(AuthContext);
 
+  // sign in with google
   const handleGoogleLogin = (event) => {
-    // sign in with google
     googleLogin()
       .then((result) => {
         const user = result.user;
@@ -19,6 +19,17 @@ const RightNav = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+  const handleGitHubLogin = (e) => {
+    githubLogin()
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
   };
   return (
     <div>
@@ -32,8 +43,10 @@ const RightNav = () => {
             <FcGoogle className="text-2xl"></FcGoogle> Login with Google
           </button>
 
-          <button className="btn btn-outline w-full">
-            {" "}
+          <button
+            onClick={handleGitHubLogin}
+            className="btn btn-outline w-full"
+          >
             <AiFillGithub className="text-2xl" /> Login with Github
           </button>
         </div>

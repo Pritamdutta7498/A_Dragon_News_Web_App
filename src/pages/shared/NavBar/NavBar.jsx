@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { BsPersonCircle } from "react-icons/bs";
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
-import { GoogleAuthProvider } from "firebase/auth";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
+  // console.log(user);
 
   const handleLogOut = () => {
     logOutUser()
@@ -61,18 +61,29 @@ const NavBar = () => {
           
         )} */}
         {user ? (
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <img
-              src={user.photoURL}
-              className="w-14 rounded-full"
-              alt="user img"
-            />
-          </label>
+          <>
+            {user?.photoURL ? (
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <img
+                  src={user.photoURL}
+                  className="w-14 rounded-full"
+                  alt="user img"
+                />
+              </label>
+            ) : (
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <BsPersonCircle className="text-4xl text-sky-600" title={user.email}/>
+              </label>
+            )}
+          </>
         ) : (
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <BsPersonCircle className="text-4xl" title="please login" />
+            <BsPersonCircle className="text-4xl" title="Please login" />
           </label>
         )}
+        {/* (
+          
+        ) */}
         {user ? (
           <button
             onClick={handleLogOut}

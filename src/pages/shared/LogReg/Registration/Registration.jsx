@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../provider/AuthProvider";
 
 const Registration = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const [user, setUser] = useState("");
   const [accepted, setAccepted] = useState(false);
+  const navigate = useNavigate();
   // console.log(user);
 
   const handleRegistration = (event) => {
@@ -16,7 +17,7 @@ const Registration = () => {
     const password = form.password.value;
     const displayName = form.name.value;
     const photoURL = form.photo.value;
-    console.log(email, password, displayName, photoURL);
+    // console.log(email, password, displayName, photoURL);
 
     //! Not Working!
     // updateUserProfile(displayName, photoURL)
@@ -32,7 +33,9 @@ const Registration = () => {
       .then((result) => {
         const loggedUser = result.user;
         setUser(loggedUser);
-        console.log(createdUser);
+        // navigate('/login')
+        
+        // console.log(createdUser);
       })
       .catch((error) => {
         console.error(error);
