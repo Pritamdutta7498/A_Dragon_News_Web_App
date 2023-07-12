@@ -1,16 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../provider/AuthProvider";
 
 const Registration = () => {
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
   const [user, setUser] = useState("");
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const [accepted, setAccepted] = useState(false);
-  const navigate = useNavigate();
   // console.log(user);
 
   const handleRegistration = (event) => {
     event.preventDefault();
+    setError("");
+    setSuccess("");
+
     const form = event.target;
 
     const email = form.email.value;
@@ -19,33 +23,40 @@ const Registration = () => {
     const photoURL = form.photo.value;
     // console.log(email, password, displayName, photoURL);
 
-    //! Not Working!
-    // updateUserProfile(displayName, photoURL)
-    // .then(() => {
-    //   console.log('profile updated');
-    //   return user;
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
+    // simple-validation
+    if (password.length < 8) {
+      setError("password must has 8 character!");
+      return;
+    }
+    else if(!/(?=.*[A-Z])/.test(password)){
+      setError('password must has one uppercase letter!')
+      return;
+    }
 
     // create user
     createUser(email, password)
       .then((result) => {
         const loggedUser = result.user;
         setUser(loggedUser);
-        // navigate('/login')
-        
         // console.log(createdUser);
+        setSuccess("User Created Successfully!");
+        setError("");
+
+        form.reset();
       })
-      .catch((error) => {
-        console.error(error);
+      .catch((err) => {
+        setError(err.message);
+        setSuccess("");
       });
   };
+
+  // function for accept term and condition---------
+
   const handleAccepted = (event) => {
     // console.log(event.target.checked);
     setAccepted(event.target.checked);
-
   };
+  
 
   return (
     <div className="hero min-h-screen">
@@ -101,7 +112,7 @@ const Registration = () => {
               className="input input-bordered"
             />
           </div>
-          <div onClick={handleAccepted} className="form-control mt-2 " >
+          <div onClick={handleAccepted} className="form-control mt-2 ">
             <label className="cursor-pointer flex items-center gap-2">
               <input
                 type="checkbox"
@@ -120,6 +131,10 @@ const Registration = () => {
               </span>
             </label>
           </div>
+          <div className="my-3">
+            <p className="text-success font-semibold">{success}</p>
+            <p className="text-error font-semibold">{error}</p>
+          </div>
 
           <div className="form-control mt-3 ">
             <input
@@ -129,6 +144,7 @@ const Registration = () => {
               value="Register"
             />
           </div>
+          
           <div>
             Already have an account?{" "}
             <Link to="/login" className="text-error font-semibold link-hover">

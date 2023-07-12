@@ -1,26 +1,24 @@
-
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../provider/AuthProvider";
 
-
 const Login = () => {
-  const {signInUser} = useContext(AuthContext);
+  const { signInUser, resetPassword } = useContext(AuthContext);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const emailRef = useRef();
   // console.log('login page location', location);
-  const from = location.state?.from?.pathname || '/category/0';
+  const from = location.state?.from?.pathname || "/category/0";
 
-
-  const handleLogin = event =>{
-   
-
+  const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
 
     const email = form.email.value;
     const password = form.password.value;
-   
+
     // console.log(email, password);
 
     // create user
@@ -28,13 +26,30 @@ const Login = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(result);
-        navigate(from, {replace:true});
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
       });
 
-     
+      //function for reset password
+ 
+  };
+  const handleResetPassword = e =>{
+    // console.log(emailRef.current.value);
+    const email = emailRef.current.value;
+    if(!email){
+      alert('Please write your email address then click reset password link!');
+      return;
+    };
+    resetPassword(email)
+    .then((result) =>{
+      alert('Please check your email!');
+    })
+    .catch((error)=>{
+      alert(error.message)
+    })
+
   }
 
   return (
@@ -50,6 +65,7 @@ const Login = () => {
             <input
               type="text"
               name="email"
+              ref={emailRef}
               required
               placeholder="email"
               className="input input-bordered"
@@ -75,10 +91,18 @@ const Login = () => {
                 Register
               </Link>
             </div>
-          </div>
-          <div className="form-control mt-6">
-          <input type="submit" className="btn btn-active hover:btn-error" value="Login" />
             
+
+          </div>
+          <div className="form-control my-3">
+            <input
+              type="submit"
+              className="btn btn-active hover:btn-error"
+              value="Login"
+            />
+          </div>
+          <div >
+            Forget your password? <button onClick={handleResetPassword} className=" btn-link ">reset password</button>
           </div>
         </form>
       </div>

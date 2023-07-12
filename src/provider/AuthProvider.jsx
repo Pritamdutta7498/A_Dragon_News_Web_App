@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -34,6 +35,9 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const resetPassword = (email) =>{
+    return sendPasswordResetEmail(auth, email)
+  }
 
   const googleLogin = () =>{
     setLoading(true);
@@ -42,7 +46,7 @@ const AuthProvider = ({ children }) => {
   const githubLogin = () =>{
     setLoading(true);
     return signInWithPopup(auth, githubProvider);
-  }
+  };
 
 
 //! :Not working
@@ -77,8 +81,10 @@ const AuthProvider = ({ children }) => {
     createUser,
     signInUser,
     logOutUser,
+    resetPassword,
     googleLogin,
-    githubLogin
+    githubLogin,
+
     
   };
   return (
