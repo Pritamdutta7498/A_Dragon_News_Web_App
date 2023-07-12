@@ -1,16 +1,20 @@
-import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { BsPersonCircle } from "react-icons/bs";
+import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const NavBar = () => {
   const { user, logOutUser } = useContext(AuthContext);
-  const handleLogOut = (event) => {
+
+  const handleLogOut = () => {
     logOutUser()
       .then(() => {})
       .catch((error) => {
         console.log(error);
       });
   };
+
   return (
     <div className="navbar bg-base-100 ml-2 ">
       <div className="navbar-start">
@@ -53,24 +57,33 @@ const NavBar = () => {
         <Link to="/career">Career</Link>
       </div>
       <div className="navbar-end ">
-        {user && (
+        {/* {user && (
+          
+        )} */}
+        {user ? (
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-14 rounded-full">
-              <img src="https://static.vecteezy.com/system/resources/previews/011/483/813/original/guy-anime-avatar-free-vector.jpg" />
-            </div>
+            <img
+              src={user.photoURL}
+              className="w-14 rounded-full"
+              alt="user img"
+            />
+          </label>
+        ) : (
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <BsPersonCircle className="text-4xl" title="please login" />
           </label>
         )}
         {user ? (
           <button
             onClick={handleLogOut}
-            className="btn btn-neutral px-8 rounded-none ml-[-20px] "
+            className="btn btn-neutral px-8 rounded-none ml-3  "
           >
             Logout
           </button>
         ) : (
           <Link to="/login">
             {" "}
-            <button className="btn btn-neutral px-8 rounded-none ml-[-20px] ">
+            <button className="btn btn-neutral px-8 rounded-none ml-3 ">
               Login
             </button>
           </Link>

@@ -1,20 +1,21 @@
 import React from "react";
 import { FcBookmark, FcShare } from "react-icons/fc";
-import { FaRegStar, FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AiFillEye } from "react-icons/ai";
 import moment from "moment/moment";
-import Rating from "react-rating";
+import { Rating } from "@smastrom/react-rating";
+
+import "@smastrom/react-rating/style.css";
 
 const NewsCard = ({ news }) => {
   const {
     author,
-    category_id,
+
     details,
     image_url,
-    others_info,
+
     rating,
-    thumbnail_url,
+
     title,
     total_view,
     _id,
@@ -66,15 +67,9 @@ const NewsCard = ({ news }) => {
           )}
           <hr className="border-3 border-slate-950" />
           <div className="card-actions flex justify-between items-center">
-            <div className="flex items-center justify-end align-middle gap-2">
-              <Rating
-                placeholderRating={rating.number}
-                emptySymbol={<FaRegStar />}
-                placeholderSymbol={<FaStar className="text-warning" />}
-                fullSymbol={<FaStar className="text-warning" />}
-              />
-              <p>{rating.number}</p>
-            </div>
+            <Rating style={{ maxWidth: 150 }} value={rating.number}  readOnly />
+            <p>{rating.number}</p>
+
             <div className="flex items-center gap-2 ">
               <AiFillEye className="text-xl mt-1" />
               <p>{total_view}</p>

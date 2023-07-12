@@ -4,7 +4,6 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-console.log("my pass is", import.meta.env.VITE_MESSAGING_SENDER_ID);
 
 const firebaseConfig = {
   apiKey:import.meta.env.VITE_APIKEY,

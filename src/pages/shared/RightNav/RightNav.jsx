@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook, BsInstagram, BsTwitter } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import Qzone from "../Qzone/Qzone";
 import bg from "../..//../assets/assets/bg.png";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const RightNav = () => {
+  const { googleLogin } = useContext(AuthContext);
+
+  const handleGoogleLogin = (event) => {
+    // sign in with google
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
-    <div  >
+    <div>
       <div>
         <h3 className="font-bold text-2xl ">Login with</h3>
         <div className="my-5">
-          <button className="btn btn-outline btn-info w-full mb-3">
-            {" "}
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-outline btn-info w-full mb-3"
+          >
             <FcGoogle className="text-2xl"></FcGoogle> Login with Google
           </button>
 
@@ -43,11 +59,10 @@ const RightNav = () => {
       <div className="relative">
         <img src={bg} alt="" />
         <p className="absolute font-semibold text-xl text-white inset-1/4">
-          The world  news we must read everyday for build our knowledge.
+          The world news we must read everyday for build our knowledge.
           <br />
           The news is based on business, politics,science, astrology etc...
         </p>
-        
       </div>
     </div>
   );
