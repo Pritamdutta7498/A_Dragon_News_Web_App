@@ -40,7 +40,7 @@ const NavBar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to="/category/0">Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/about">About</Link>
@@ -52,7 +52,7 @@ const NavBar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex gap-5">
-        <Link to="/">Home</Link>
+        <Link to="/category/0">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/career">Career</Link>
       </div>

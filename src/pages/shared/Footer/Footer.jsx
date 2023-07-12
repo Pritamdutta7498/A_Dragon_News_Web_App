@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            <h3> <small>This website is copyright @2023</small> </h3>
+        <div className='my-3 text-center '>
+            <h3> <small>This website is copyright by pritam @2023</small> </h3>
         </div>
     );
 };

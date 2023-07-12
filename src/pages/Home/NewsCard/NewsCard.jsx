@@ -67,8 +67,8 @@ const NewsCard = ({ news }) => {
           )}
           <hr className="border-3 border-slate-950" />
           <div className="card-actions flex justify-between items-center">
-            <Rating style={{ maxWidth: 150 }} value={rating.number}  readOnly />
-            <p>{rating.number}</p>
+            <Rating style={{ maxWidth: 150 }} value={rating?.number}  readOnly />
+            <p>{rating?.number}</p>
 
             <div className="flex items-center gap-2 ">
               <AiFillEye className="text-xl mt-1" />

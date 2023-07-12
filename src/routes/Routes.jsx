@@ -9,16 +9,28 @@ import Login from "../pages/shared/LogReg/Login/Login";
 import Registration from "../pages/shared/LogReg/Registration/Registration";
 import PrivetRoute from "./PrivetRoute";
 import Terms from "../pages/shared/Terms/Terms";
+import HomeLayout from "../layout/HomeLayout";
+import Home from "../pages/Home/Home/Home";
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomeLayout/>,
+    children:[
+      {
+        path:'/',
+        element:<Home/>
+      }
+    ]
+  },
   {
     path: "/",
     element: <LoginLayout />,
     children: [
-      {
-        path: "/",
-        element: <Navigate to="/category/0"></Navigate>,
-      },
+      // {
+      //   path: "/",
+      //   element: <Navigate to="/category/0"></Navigate>,
+      // },
       {
         path: "login",
         element: <Login />,
@@ -42,7 +54,7 @@ const router = createBrowserRouter([
         path: ":id",
         element: <Category></Category>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.id}`),
+          fetch(`https://dragon-news-server-pritamdutta7498.vercel.app/categories/${params.id}`),
       },
     ],
   },
@@ -58,7 +70,7 @@ const router = createBrowserRouter([
           </PrivetRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/news/${params.id}`),
+          fetch(`https://dragon-news-server-pritamdutta7498.vercel.app/news/${params.id}`),
       },
     ],
   },

@@ -6,6 +6,7 @@ const Login = () => {
   const { signInUser, resetPassword } = useContext(AuthContext);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
   const location = useLocation();
   const emailRef = useRef();
@@ -25,11 +26,14 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(result);
+        setSuccess("User Login Successfully!");
+        setError("");
+        // console.log(result);
         navigate(from, { replace: true });
       })
-      .catch((error) => {
-        console.error(error);
+      .catch((err) => {
+        setError(err.message)
+        // console.error(error);
       });
 
       //function for reset password
@@ -46,8 +50,8 @@ const Login = () => {
     .then((result) =>{
       alert('Please check your email!');
     })
-    .catch((error)=>{
-      alert(error.message)
+    .catch((err)=>{
+      alert(err.message)
     })
 
   }
@@ -86,13 +90,17 @@ const Login = () => {
               Don't have an account?{" "}
               <Link
                 to="/register"
-                className="text-error font-semibold link-hover"
+                className="text-blue-700  link-hover"
               >
-                Register
+                register
               </Link>
             </div>
             
 
+          </div>
+          <div className="">
+            <p className="text-success font-semibold">{success}</p>
+            <p className="text-error font-semibold">{error}</p>
           </div>
           <div className="form-control my-3">
             <input
