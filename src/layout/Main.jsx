@@ -28,3 +28,23 @@ const Main = () => {
 };
 
 export default Main;
+
+
+
+/* 
+<div className="my-container">
+      <Header />
+      <NavBar/>
+      <div className="grid grid-cols-12 gap-4">
+        <div className=" col-span-3">
+          <LeftNav />
+        </div>
+        <div className="col-span-6 ">
+          <Outlet/>
+        </div>
+        <div className="col-span-3 ">
+          <RightNav />
+        </div>
+      </div>
+      <Footer />
+    </div> */
