@@ -13,7 +13,7 @@ const Home = () => {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content">
-          <div className="max-w-md backdrop-blur-md rounded-lg py-5">
+          <div className="max-w-md backdrop-blur-md  p-10 rounded-full  animate-pulse">
             <h1 className="mb-5 text-5xl font-bold ">News Highlights</h1>
             <p className="mb-5 ">
             News helps us stay up to date with the latest developments, trends, and advancements in various fields such as technology, science, health, business, sports, and more. It enables us to keep pace with rapidly changing information and adapt to the evolving world around us.

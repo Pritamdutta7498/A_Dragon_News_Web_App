@@ -13,7 +13,10 @@ const HomeLayout = () => {
             <NavBar/>
           </div>
           <Outlet/>
-          <Footer />
+          
+             <Footer />
+         
+         
         </div>
       );
 };

@@ -11,6 +11,8 @@ import PrivetRoute from "./PrivetRoute";
 import Terms from "../pages/shared/Terms/Terms";
 import HomeLayout from "../layout/HomeLayout";
 import Home from "../pages/Home/Home/Home";
+import About from "../pages/shared/About/About";
+import Career from "../pages/shared/Career/Career";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,15 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home/>
-      }
+      },
+      {
+        path:'/about',
+        element:<About/>
+      },
+      {
+        path:'/career',
+        element:<Career/>
+      },
     ]
   },
   {
